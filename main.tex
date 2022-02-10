@@ -1,0 +1,62 @@
+\documentclass[12pt, a4paper]{extarticle}
+% \documentclass[14pt, a4paper]{report}
+
+\makeatletter
+% we use \prefix@<level> only if it is defined
+\renewcommand{\@seccntformat}[1]{%
+  \ifcsname prefix@#1\endcsname
+    \csname prefix@#1\endcsname
+  \else
+    \csname the#1\endcsname\quad
+  \fi}
+% define \prefix@section
+\newcommand\prefix@section{Section \thesection: }
+\makeatother
+
+%%%%%%%%%%%% Пакеты %%%%%%%%%%%%%%%%%%
+\include{Settings/packages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% Формат %%%%%%%%%%%%%%%%%%
+\include{Settings/format}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%% Начало документа %%%%%%%%%%%%%%%%%%
+\begin{document}
+\large
+
+\includepdf[pages=-]{titlepage.pdf}
+
+% Если нужно вставить свой титульный лист, то если загрузить его в формате .pdf и переназвать файл на titlepage, то он вставится в начало документа
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%  Команды %%%%%%%%%%%%%%%%%%
+\include{commands}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%% Содержание %%%%%%%%%%%%%%%%%%
+\renewcommand{\contentsname}{\centering Содержание}
+\include{tocpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%% Основной текст %%%%%%%%%%%%%%
+\include{content}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%% Источники %%%%%%%%%%%%%%%%%%
+\include{bibpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
